@@ -23,7 +23,7 @@ CPPFLAGS ?= -Isrc -D_FORTIFY_SOURCE=2
 # compile flags + warnings, hardening
 CFLAGS ?= -std=c99 -Os -pipe \
           -Wall -Wextra -Wformat=2 -Werror=format-security \
-          -Wshadow -Wpointer-arith -Wcast-qual -Wwrite-strings \
+          -Wshadow -Wpointer-arith -Wcast-qual \
           -Wmissing-prototypes -Wstrict-prototypes -Wswitch-enum \
           -Wundef -Wvla -fno-common -fno-strict-aliasing \
           -fstack-protector-strong -fPIE

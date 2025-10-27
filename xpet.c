@@ -61,6 +61,7 @@ void create_window(void)
 	);
 
 	XpmCreatePixmapFromData(dpy, root, (char**)img, &pix, &mask, &xpm_attrs);
+	/* transparency */
 	XShapeCombineMask(dpy, pet.window, ShapeBounding, 0, 0, mask, ShapeSet);
 	XSetWindowBackgroundPixmap(dpy, pet.window, pix);
 
@@ -131,7 +132,10 @@ void run(void)
 			XEvent ev;
 			XNextEvent(dpy, &ev);
 		}
-		goto_mouse();
+
+		if (chasing) {
+			goto_mouse();
+		}
 		xsleep(PET_REFRESH);
 	}
 }
