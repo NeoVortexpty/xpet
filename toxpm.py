@@ -7,11 +7,9 @@ any program and convert it to xpm later
 from PIL import Image
 from typing import Any
 import sys
-import os
 
-def toxpm(input_path, output_path=None):
-    if output_path == None:
-        output_path = input_path + ".xpm"
+def toxpm(input_path):
+    output_path = "img.xpm"
 
     image = Image.open(input_path).convert("RGBA")
     image = image.quantize(256).convert("RGBA") # xpm needs 256-colours
@@ -26,10 +24,14 @@ def toxpm(input_path, output_path=None):
 
     def next_symbol():
         nonlocal next_char
-        char = chr(next_char)
-        next_char += 1
-        if next_char == 92:  # skip \
+        # find next safe ascii char
+        while True:
+            char = chr(next_char)
             next_char += 1
+            # skip characters that break c strings
+            if char in ['"', "'", '\\']:
+                continue
+            break
         return char
 
     # build pixmap and colour table
@@ -70,8 +72,4 @@ if len(sys.argv) < 2:
     print("usage: toxpm.py <input.(jpg/png)> output.xpm")
     sys.exit(1)
 
-output_path = None
-if len(sys.argv) > 2:
-    output_path = sys.argv[2]
-
-toxpm(sys.argv[1], output_path)
+toxpm(sys.argv[1])
