@@ -323,6 +323,7 @@ void on_button_release(XButtonEvent* b)
 
 	pet.dragging = False;
 	pet.frozen = pet.was_frozen;
+	pet.unfreeze_delay = UNFREEZE_DELAY;
 	pet.chasing = pet.was_chasing;
 	pet.subpixel_x = pet.x;
 	pet.subpixel_y = pet.y;
@@ -377,17 +378,30 @@ void pet_freeze(void)
 		set_pet_state(IDLE);
 		pet.frozen_time = 0;
 	}
+	else {
+		/* add a short delay before walking again */
+		pet.unfreeze_delay = UNFREEZE_DELAY;
+		set_pet_state(IDLE);
+	}
 }
 
 void pet_chase(void)
 {
+	Bool was_frozen = pet.frozen;
 	pet.chasing = !pet.chasing;
+
 	if (pet.chasing) {
 		pet.frozen = False;
-		set_pet_state(E);
-	}
-	else {
+		if (was_frozen) {
+			pet.unfreeze_delay = UNFREEZE_DELAY;
+			set_pet_state(IDLE);
+		}
+		else {
+			set_pet_state(E);
+		}
+	} else {
 		pick_random_destination();
+		set_pet_state(IDLE);
 	}
 }
 
@@ -457,6 +471,7 @@ void run(void)
 		while (XPending(dpy)) {
 			XEvent ev;
 			XNextEvent(dpy, &ev);
+
 			if (ev.type == KeyPress) {
 				on_key(XLookupKeysym(&ev.xkey, 0));
 			}
@@ -473,39 +488,62 @@ void run(void)
 				draw_bubble();
 			}
 		}
+
+		/* states */
 		if (pet.speech) {
 			pet.speech_time += PET_REFRESH;
 			if (pet.speech_time >= SPEECH_DURATION) {
 				hide_speech_bubble();
 			}
 		}
+
 		if (pet.state == HAPPY) {
 			pet.happy_time += PET_REFRESH;
 			if (pet.happy_time >= HAPPY_DURATION) {
 				set_pet_state(pet.previous_state);
 			}
 		}
-		else if (pet.dragging) { /* animate only */
-		}
-		else if (!pet.frozen) {
-			if (pet.chasing) {
-				get_mouse_pos();
-				move_to(mouse.x, mouse.y);
-			}
-			else {
-				wander();
-			}
+
+		/* movement logic */
+		if (pet.dragging) {
+			/* animate only */
 		}
 		else {
-			pet.frozen_time += PET_REFRESH;
-			if (pet.frozen_time >= SLEEP_DELAY && pet.state != SLEEPING) {
-				set_pet_state(SLEEPING);
+			Bool skip_motion = False;
+
+			/* wait after unfreezing */
+			if (pet.unfreeze_delay > 0) {
+				pet.unfreeze_delay -= PET_REFRESH;
+				if (pet.unfreeze_delay > 0) {
+					set_pet_state(IDLE); /* stay idle during delay */
+					skip_motion = True; /* skip movement this frame */
+				}
+				else {
+					pet.unfreeze_delay = 0;
+				}
+			}
+
+			if (!skip_motion) {
+				if (!pet.frozen) {
+					if (pet.chasing) {
+						get_mouse_pos();
+						move_to(mouse.x, mouse.y);
+					}
+					else {
+						wander();
+					}
+				}
+				else {
+					pet.frozen_time += PET_REFRESH;
+					if (pet.frozen_time >= SLEEP_DELAY && pet.state != SLEEPING) {
+						set_pet_state(SLEEPING);
+					}
+				}
 			}
 		}
 
 		update_animation();
 
-		/* keep windows on top of others */
 		XRaiseWindow(dpy, pet.window);
 		if (pet.bubble_window) {
 			XRaiseWindow(dpy, pet.bubble_window);
@@ -607,6 +645,7 @@ void setup(void)
 	pet.dragging = False;
 	pet.was_chasing = False;
 	pet.was_frozen = False;
+	pet.unfreeze_delay = 0;
 	pet.speech = NULL;
 	pet.speech_time = 0;
 	pet.bubble_window = 0;
